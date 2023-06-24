@@ -2,6 +2,8 @@
 
 #include <SDL3/SDL.h>
 
+#include "gui/manager.h"
+
 namespace Cardinal {
 
 class Application {
@@ -9,6 +11,9 @@ class Application {
   void Render();
   void ProcessEvent(const SDL_Event* event);
   bool Quit();
+
+ private:
+  Manager gui_;
 };
 
 }  // namespace Cardinal

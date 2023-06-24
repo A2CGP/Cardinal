@@ -67,7 +67,7 @@ void Platform::CompleteFrame() {
   SDL_GL_SwapWindow(window_);
 }
 
-void Platform::Run(Application *app) {
+void Platform::Run(Application* app) {
   bool isRunning = true;
 
   LOG(INFO) << "Starting";

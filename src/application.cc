@@ -4,7 +4,9 @@
 
 namespace Cardinal {
 
-void Application::Render() {}
+void Application::Render() {
+  gui_.Render();
+}
 
 void Application::ProcessEvent(const SDL_Event* event) {
   ImGuiIO& io = ImGui::GetIO();
