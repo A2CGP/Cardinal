@@ -23,6 +23,14 @@ set(SOURCES_CARDINAL_PLATFORM
 )
 source_group(platform FILES ${SOURCES_CARDINAL_PLATFORM})
 
+set(SOURCES_CARDINAL_DRAW
+  "src/draw/framebuffer.h"
+  "src/draw/framebuffer.cc"
+  "src/draw/renderer.h"
+  "src/draw/renderer.cc"
+)
+source_group(draw FILES ${SOURCES_CARDINAL_DRAW})
+
 set(SOURCES_CARDINAL_UTILS
   "src/utils/stb_image.h"
   "src/utils/stb_perlin.h"
@@ -32,6 +40,7 @@ source_group(utils FILES ${SOURCES_CARDINAL_UTILS})
 set(SOURCES_CANDINAL
   ${SOURCES_CARDINAL_GUI}
   ${SOURCES_CARDINAL_PLATFORM}
+  ${SOURCES_CARDINAL_DRAW}
   ${SOURCES_CARDINAL_UTILS}
   "src/application.h"
   "src/application.cc"

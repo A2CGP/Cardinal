@@ -15,7 +15,7 @@ float Manager::RenderMenuBar() {
     }
     ImGui::Button("Layout");
     ImGui::Button("Model");
-
+    
     menu_bar_height = ImGui::GetWindowSize().y;
     ImGui::EndMainMenuBar();
   }

@@ -18,7 +18,7 @@ void Platform::Init() {
   SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
   window_ = SDL_CreateWindow(
-      "Cardinal", 1400, 1200,
+      settings_.title, settings_.width, settings_.height,
       SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIDDEN);
   CHECK(window_) << "Failed to create window: " << SDL_GetError();
 
@@ -40,6 +40,8 @@ void Platform::Init() {
   ImGui::CreateContext();
   ImGui_ImplSDL3_InitForOpenGL(window_, context_);
   ImGui_ImplOpenGL3_Init();
+
+  renderer_ = new Renderer(settings_.width, settings_.height, settings_.samples);
 }
 
 void Platform::Shutdown() {
@@ -53,6 +55,8 @@ void Platform::Shutdown() {
 
   window_ = nullptr;
   context_ = nullptr;
+  delete renderer_;
+  renderer_ = nullptr;
 }
 
 void Platform::BeginFrame() {
@@ -87,7 +91,9 @@ void Platform::Run(Application* app) {
       app->ProcessEvent(&event);
     }
     BeginFrame();
+    renderer_->Begin();
     app->Render();
+    renderer_->Complete();
     CompleteFrame();
   }
 
