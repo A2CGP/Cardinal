@@ -38,10 +38,15 @@ void Platform::Init() {
 
   IMGUI_CHECKVERSION();
   ImGui::CreateContext();
+
   ImGuiIO& io = ImGui::GetIO();
+
+  io.ConfigFlags |= ImGuiConfigFlags_DockingEnable | ImGuiConfigFlags_ViewportsEnable;
+
   ImFontConfig font_cfg;
   font_cfg.SizePixels = 28;
   io.Fonts->AddFontDefault(&font_cfg);
+
   ImGui_ImplSDL3_InitForOpenGL(window_, context_);
   ImGui_ImplOpenGL3_Init();
 
@@ -73,6 +78,9 @@ void Platform::CompleteFrame() {
   ImGui::Render();
   ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
   SDL_GL_SwapWindow(window_);
+
+  ImGui::UpdatePlatformWindows();
+  ImGui::RenderPlatformWindowsDefault();
 }
 
 void Platform::Run(Application* app) {
