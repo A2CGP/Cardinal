@@ -38,6 +38,10 @@ void Platform::Init() {
 
   IMGUI_CHECKVERSION();
   ImGui::CreateContext();
+  ImGuiIO& io = ImGui::GetIO();
+  ImFontConfig font_cfg;
+  font_cfg.SizePixels = 28;
+  io.Fonts->AddFontDefault(&font_cfg);
   ImGui_ImplSDL3_InitForOpenGL(window_, context_);
   ImGui_ImplOpenGL3_Init();
 
